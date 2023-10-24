@@ -17,5 +17,8 @@
   "workspaces": [
     "apps/*",
     "packages/*"
-  ]
+  ],
+  "dependencies": {
+    "Commitizen": "npm:commitizen@^4.3.0"
+  }
 }
