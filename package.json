@@ -1,29 +1,29 @@
 {
+  "name": "@g-retro/monorepo",
   "private": true,
+  "packageManager": "npm@8.19.4",
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
   "scripts": {
+    "prepare": "husky install",
     "build": "turbo run build",
     "dev": "turbo run dev",
     "lint": "turbo run lint",
     "format": "prettier --write \"**/*.{ts,tsx,md}\"",
     "commit": "cz"
   },
+  "dependencies": {},
   "devDependencies": {
+    "@commitlint/cli": "^18.1.0",
+    "@commitlint/config-conventional": "^18.1.0",
     "commitizen": "^4.3.0",
     "cz-conventional-changelog": "^3.3.0",
     "eslint": "^8.48.0",
+    "husky": "^8.0.3",
     "prettier": "^3.0.3",
     "tsconfig": "*",
     "turbo": "latest"
-  },
-  "name": "g-retro",
-  "packageManager": "npm@8.19.4",
-  "workspaces": [
-    "apps/*",
-    "packages/*"
-  ],
-  "config": {
-    "commitizen": {
-      "path": "./node_modules/cz-conventional-changelog"
-    }
   }
 }
