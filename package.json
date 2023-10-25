@@ -15,7 +15,7 @@
     "tsconfig": "*",
     "turbo": "latest"
   },
-  "name": "G-Retro",
+  "name": "g-retro",
   "packageManager": "npm@8.19.4",
   "workspaces": [
     "apps/*",
