@@ -18,12 +18,12 @@
   "devDependencies": {
     "@commitlint/cli": "^18.1.0",
     "@commitlint/config-conventional": "^18.1.0",
+    "@g-retro/tsconfig": "*",
     "commitizen": "^4.3.0",
     "cz-conventional-changelog": "^3.3.0",
     "eslint": "^8.48.0",
     "husky": "^8.0.3",
     "prettier": "^3.0.3",
-    "tsconfig": "*",
     "turbo": "latest"
   }
 }
