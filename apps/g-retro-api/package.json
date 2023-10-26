@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "tsc": "tsc",
+    "tscinnit": "tsc --init",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
