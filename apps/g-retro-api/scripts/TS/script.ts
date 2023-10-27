@@ -3,6 +3,7 @@ function calcAge(yearborn: number) {
     const age = yearATM - yearborn;
 
     return age;
+
 }
 
 console.log(calcAge(2002));
