@@ -1,16 +1,16 @@
 {
-  "$schema": "https://json.schemastore.org/tsconfig",
-  "display": "Default",
-  "extends": "@tsconfig/strictest/tsconfig.json",
-  "exclude": ["node_modules"],
-  "compilerOptions": {
-    "lib": ["es2022"],
-    "module": "commonjs",
-    "target": "es2022",
-    "moduleResolution": "node",
-    "noImplicitAny": true,
-    "allowSyntheticDefaultImports": true,
-    "composite": true,
-    "resolveJsonModule": true
-  }
+    "$schema": "https://json.schemastore.org/tsconfig",
+    "display": "Default",
+    "extends": "@tsconfig/strictest/tsconfig.json",
+    "exclude": ["node_modules"],
+    "compilerOptions": {
+        "lib": ["es2022"],
+        "module": "CommonJS",
+        "target": "es2022",
+        "moduleResolution": "node",
+        "noImplicitAny": true,
+        "allowSyntheticDefaultImports": true,
+        "composite": true,
+        "resolveJsonModule": true
+    }
 }
