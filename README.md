@@ -21,3 +21,9 @@ Eslint:
 ```sh
 npx eslint FILEPATH
 ```
+
+Run API(ts-node-dev):
+
+```sh
+npm run dev
+```
