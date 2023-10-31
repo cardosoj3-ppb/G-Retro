@@ -1,0 +1,24 @@
+# Project dependencies
+node_modules
+
+# Build
+target
+dist
+
+# Testing
+coverage
+reports
+
+# Misc
+*.sh
+*.hbs
+
+# Debug
+npm-debug.log
+
+# Caches
+.cache/
+.eslintcache
+
+# Generated Files
+CHANGELOG.md

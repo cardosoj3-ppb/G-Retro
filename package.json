@@ -14,7 +14,6 @@
     "format": "prettier --write \"**/*.{ts,tsx,md}\"",
     "commit": "cz"
   },
-  "dependencies": {},
   "devDependencies": {
     "@commitlint/cli": "^18.1.0",
     "@commitlint/config-conventional": "^18.1.0",
@@ -24,6 +23,7 @@
     "eslint": "^8.48.0",
     "husky": "^8.0.3",
     "prettier": "^3.0.3",
-    "turbo": "latest"
+    "turbo": "latest",
+    "typescript": "^5.2.2"
   }
 }
