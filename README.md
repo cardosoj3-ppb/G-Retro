@@ -27,3 +27,9 @@ Run API(ts-node-dev):
 ```sh
 npm run dev
 ```
+
+Run GraphQL Code Generator:
+
+```sh
+npm run codegen
+```
