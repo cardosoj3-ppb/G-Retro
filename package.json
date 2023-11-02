@@ -12,7 +12,8 @@
     "dev": "turbo run dev",
     "lint": "turbo run lint",
     "format": "prettier --write \"**/*.{ts,tsx,md}\"",
-    "commit": "cz"
+    "commit": "cz",
+    "codegen": "graphql-codegen --config codegen.ts"
   },
   "devDependencies": {
     "@commitlint/cli": "^18.1.0",
@@ -24,6 +25,9 @@
     "husky": "^8.0.3",
     "prettier": "^3.0.3",
     "turbo": "latest",
-    "typescript": "^5.2.2"
+    "typescript": "^5.2.2",
+    "@graphql-codegen/introspection": "4.0.0",
+    "@graphql-codegen/cli": "5.0.0",
+    "@graphql-codegen/client-preset": "4.1.0"
   }
 }
