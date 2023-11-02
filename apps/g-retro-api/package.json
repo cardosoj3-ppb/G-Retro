@@ -9,16 +9,20 @@
     "tsc": "tsc",
     "tscinnit": "tsc --init",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "ts-node-dev --respawn --transpile-only ./src/index.ts"
+    "dev": "ts-node-dev --respawn --transpile-only ./src/index.ts",
+    "codegen": "graphql-codegen --config codegen.ts"
   },
   "author": "",
   "license": "ISC",
   "devDependencies": {
     "@g-retro/eslint-config-custom": "*",
     "@g-retro/tsconfig": "*",
+    "@graphql-codegen/cli": "5.0.0",
     "@types/cors": "^2.8.15",
     "ts-node-dev": "^2.0.0",
-    "typescript": "*"
+    "typescript": "*",
+    "@graphql-codegen/introspection": "4.0.0",
+    "@graphql-codegen/client-preset": "4.1.0"
   },
   "dependencies": {
     "@apollo/server": "^4.9.5",
