@@ -4,7 +4,8 @@
   "packageManager": "npm@8.19.4",
   "workspaces": [
     "apps/*",
-    "packages/*"
+    "packages/*",
+    "./infra/*"
   ],
   "scripts": {
     "prepare": "husky install",
