@@ -2,6 +2,7 @@ import type { CodegenConfig } from '@graphql-codegen/cli';
 
 const config: CodegenConfig = {
   overwrite: true,
+
   schema: './src/graphql/schema',
   documents: './src/**/*.ts',
   generates: {
@@ -13,6 +14,7 @@ const config: CodegenConfig = {
       plugins: ['introspection'],
     },
   },
+
 };
 
 export default config;
