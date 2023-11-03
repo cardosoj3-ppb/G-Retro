@@ -1,3 +1,4 @@
+/* eslint-disable */
 import type { GraphQLResolveInfo } from 'graphql';
 import type { MyContext } from '../graphql/context/types';
 export type Maybe<T> = T | null | undefined;
@@ -16,8 +17,10 @@ export type Scalars = {
   Float: { input: number; output: number; }
 };
 
+/** EXAMPLE */
 export type GQLQuery = {
   __typename?: 'Query';
+  /** EXAMPLE */
   hello?: Maybe<Scalars['String']['output']>;
 };
 
