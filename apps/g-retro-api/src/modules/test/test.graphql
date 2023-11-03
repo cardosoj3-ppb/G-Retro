@@ -1,3 +1,9 @@
+"""
+EXAMPLE
+"""
 type Query {
+  """
+  EXAMPLE
+  """
   hello: String
 }

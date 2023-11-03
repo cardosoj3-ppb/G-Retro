@@ -1,14 +1,14 @@
-// npm install @apollo/server express graphql cors
+import http from 'http';
+
 import { ApolloServer } from '@apollo/server';
 import { expressMiddleware } from '@apollo/server/express4';
-
-import express from 'express';
-import http from 'http';
 import cors from 'cors';
+import express, { json } from 'express';
+
 import { type MyContext, buildResolvers, buildSchema, buildContext } from './graphql';
 
 (async () => {
-  // Build Schema
+  // Build Schema\
   const schema = buildSchema();
 
   // Build Resolvers
@@ -31,7 +31,7 @@ import { type MyContext, buildResolvers, buildSchema, buildContext } from './gra
   app.use(
     '/graphql',
     cors<cors.CorsRequest>(),
-    express.json(),
+    json(),
     // expressMiddleware accepts the same arguments:
     // an Apollo Server instance and optional configuration options
     expressMiddleware(server, {

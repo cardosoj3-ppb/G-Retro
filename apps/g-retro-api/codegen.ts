@@ -1,10 +1,21 @@
 import type { CodegenConfig } from '@graphql-codegen/cli';
 
+const header = '/* eslint-disable */';
+
 const config: CodegenConfig = {
   schema: './src/modules/**/*.graphql',
   generates: {
     './src/generated/graphql-types.ts': {
-      plugins: ['typescript', 'typescript-resolvers', 'typescript-operations'],
+      plugins: [
+        {
+          add: {
+            content: header.trimStart(),
+          },
+        },
+        'typescript',
+        'typescript-resolvers',
+        'typescript-operations',
+      ],
       config: {
         enumsAsTypes: true,
         makeResolverTypeCallable: true,

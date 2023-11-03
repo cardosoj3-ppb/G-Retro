@@ -9,17 +9,18 @@
   ],
   "scripts": {
     "prepare": "husky install",
+    "generate": "turbo run generate",
+    "lint": "turbo run lint",
     "build": "turbo run build",
     "dev": "turbo run dev",
-    "lint": "turbo run lint",
     "format": "prettier --write \"**/*.{ts,tsx,md}\"",
-    "commit": "cz",
-    "codegen": "graphql-codegen --config codegen.ts"
+    "commit": "cz"
   },
   "devDependencies": {
     "@commitlint/cli": "^18.1.0",
     "@commitlint/config-conventional": "^18.1.0",
     "@g-retro/tsconfig": "*",
+    "@g-retro/eslint-config-custom": "*",
     "commitizen": "^4.3.0",
     "cz-conventional-changelog": "^3.3.0",
     "eslint": "^8.48.0",
