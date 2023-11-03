@@ -1,16 +1,18 @@
 import type { CodegenConfig } from '@graphql-codegen/cli';
 
 const config: CodegenConfig = {
-  overwrite: true,
-  schema: './src/graphql/schema',
-  documents: './src/**/*.ts',
+  schema: './src/modules/**/*.graphql',
   generates: {
-    './bin/graphql': {
-      preset: 'client',
-      plugins: [],
-    },
-    './graphql.schema.json': {
-      plugins: ['introspection'],
+    './src/generated/graphql-types.ts': {
+      plugins: ['typescript', 'typescript-resolvers', 'typescript-operations'],
+      config: {
+        enumsAsTypes: true,
+        makeResolverTypeCallable: true,
+        useTypeImports: true,
+        contextType: '../graphql/context/types#MyContext',
+        maybeValue: 'T | null | undefined',
+        typesPrefix: 'GQL',
+      },
     },
   },
 };
