@@ -1,0 +1,28 @@
+version: '3.8'
+
+volumes:
+  postgresdb:
+    external: true
+
+services:
+  g-retro-postgres:
+    build:
+      context: ./infra/g-retro-postgresql
+      dockerfile: ./Dockerfile
+    ports:
+      - '5432:5432'
+    volumes:
+      - postgresdb:/var/lib/postgresql/data
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=1234
+      - POSTGRES_DB=gretro
+
+  pgadmin:
+    image: dpage/pgadmin4:latest
+    environment:
+      - PGADMIN_DEFAULT_EMAIL=admin@email.com
+      - PGADMIN_DEFAULT_PASSWORD=admin
+      - PGADMIN_LISTEN_PORT=5050
+    ports:
+      - '5050:5050'
