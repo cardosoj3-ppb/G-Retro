@@ -5,7 +5,7 @@
   "workspaces": [
     "apps/*",
     "packages/*",
-    "./infra/*"
+    "infra/*"
   ],
   "scripts": {
     "prepare": "husky install",
