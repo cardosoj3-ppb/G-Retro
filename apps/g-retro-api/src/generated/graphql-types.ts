@@ -1,5 +1,5 @@
 /* eslint-disable */
-import type { GraphQLResolveInfo } from 'graphql';
+import type { GraphQLResolveInfo, GraphQLScalarType, GraphQLScalarTypeConfig } from 'graphql';
 import type { MyContext } from '../graphql/context/types';
 export type Maybe<T> = T | null | undefined;
 export type InputMaybe<T> = T | null | undefined;
@@ -15,13 +15,32 @@ export type Scalars = {
   Boolean: { input: boolean; output: boolean; }
   Int: { input: number; output: number; }
   Float: { input: number; output: number; }
+  /** Scalars DateTime */
+  DateTime: { input: Date; output: Date; }
 };
 
-/** EXAMPLE */
+/** User Query */
 export type GQLQuery = {
   __typename?: 'Query';
-  /** EXAMPLE */
-  hello?: Maybe<Scalars['String']['output']>;
+  /** Query to get an User */
+  user?: Maybe<GQLUser>;
+};
+
+/** User Type */
+export type GQLUser = {
+  __typename?: 'User';
+  /** Creation date of user */
+  creationDate: Scalars['DateTime']['output'];
+  /** Email of user */
+  email: Scalars['String']['output'];
+  /** First name of user */
+  firstName: Scalars['String']['output'];
+  /** Id of user */
+  id: Scalars['ID']['output'];
+  /** Last name of user */
+  lastName: Scalars['String']['output'];
+  /** Token of user */
+  token?: Maybe<Scalars['String']['output']>;
 };
 
 
@@ -92,22 +111,44 @@ export type DirectiveResolverFn<TResult = {}, TParent = {}, TContext = {}, TArgs
 /** Mapping between all available schema types and the resolvers types */
 export type GQLResolversTypes = {
   Boolean: ResolverTypeWrapper<Scalars['Boolean']['output']>;
+  DateTime: ResolverTypeWrapper<Scalars['DateTime']['output']>;
+  ID: ResolverTypeWrapper<Scalars['ID']['output']>;
   Query: ResolverTypeWrapper<{}>;
   String: ResolverTypeWrapper<Scalars['String']['output']>;
+  User: ResolverTypeWrapper<GQLUser>;
 };
 
 /** Mapping between all available schema types and the resolvers parents */
 export type GQLResolversParentTypes = {
   Boolean: Scalars['Boolean']['output'];
+  DateTime: Scalars['DateTime']['output'];
+  ID: Scalars['ID']['output'];
   Query: {};
   String: Scalars['String']['output'];
+  User: GQLUser;
 };
 
+export interface GQLDateTimeScalarConfig extends GraphQLScalarTypeConfig<GQLResolversTypes['DateTime'], any> {
+  name: 'DateTime';
+}
+
 export type GQLQueryResolvers<ContextType = MyContext, ParentType extends GQLResolversParentTypes['Query'] = GQLResolversParentTypes['Query']> = {
-  hello?: Resolver<Maybe<GQLResolversTypes['String']>, ParentType, ContextType>;
+  user?: Resolver<Maybe<GQLResolversTypes['User']>, ParentType, ContextType>;
+};
+
+export type GQLUserResolvers<ContextType = MyContext, ParentType extends GQLResolversParentTypes['User'] = GQLResolversParentTypes['User']> = {
+  creationDate?: Resolver<GQLResolversTypes['DateTime'], ParentType, ContextType>;
+  email?: Resolver<GQLResolversTypes['String'], ParentType, ContextType>;
+  firstName?: Resolver<GQLResolversTypes['String'], ParentType, ContextType>;
+  id?: Resolver<GQLResolversTypes['ID'], ParentType, ContextType>;
+  lastName?: Resolver<GQLResolversTypes['String'], ParentType, ContextType>;
+  token?: Resolver<Maybe<GQLResolversTypes['String']>, ParentType, ContextType>;
+  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
 };
 
 export type GQLResolvers<ContextType = MyContext> = {
+  DateTime?: GraphQLScalarType;
   Query?: GQLQueryResolvers<ContextType>;
+  User?: GQLUserResolvers<ContextType>;
 };
 

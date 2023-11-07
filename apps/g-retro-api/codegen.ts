@@ -23,6 +23,9 @@ const config: CodegenConfig = {
         contextType: '../graphql/context/types#MyContext',
         maybeValue: 'T | null | undefined',
         typesPrefix: 'GQL',
+        scalars: {
+          DateTime: 'Date',
+        },
       },
     },
   },

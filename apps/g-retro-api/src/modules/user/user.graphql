@@ -1,0 +1,39 @@
+"""
+User Type
+"""
+type User {
+  """
+  Id of user
+  """
+  id: ID!
+  """
+  Email of user
+  """
+  email: String!
+  """
+  First name of user
+  """
+  firstName: String!
+  """
+  Last name of user
+  """
+  lastName: String!
+  """
+  Token of user
+  """
+  token: String
+  """
+  Creation date of user
+  """
+  creationDate: DateTime!
+}
+
+"""
+User Query
+"""
+type Query {
+  """
+  Query to get an User
+  """
+  user: User
+}
