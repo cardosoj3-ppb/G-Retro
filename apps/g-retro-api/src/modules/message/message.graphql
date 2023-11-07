@@ -1,0 +1,39 @@
+"""
+Message Type
+"""
+type Message {
+  """
+  Id of message
+  """
+  id: ID!
+  """
+  Text of message
+  """
+  text: String!
+  """
+  User of message
+  """
+  user: Int!
+  """
+  Board of message
+  """
+  board: Int!
+  """
+  Section of message
+  """
+  section: Int!
+  """
+  Creation date of message
+  """
+  creationDate: DateTime!
+}
+
+"""
+Message Query
+"""
+type Query {
+  """
+  Query to get an User
+  """
+  message: Message
+}

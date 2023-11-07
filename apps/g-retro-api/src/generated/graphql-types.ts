@@ -30,11 +30,30 @@ export type GQLBoard = {
   title: Scalars['String']['output'];
 };
 
+/** Message Type */
+export type GQLMessage = {
+  __typename?: 'Message';
+  /** Board of message */
+  board: Scalars['Int']['output'];
+  /** Creation date of message */
+  creationDate: Scalars['DateTime']['output'];
+  /** Id of message */
+  id: Scalars['ID']['output'];
+  /** Section of message */
+  section: Scalars['Int']['output'];
+  /** Text of message */
+  text: Scalars['String']['output'];
+  /** User of message */
+  user: Scalars['Int']['output'];
+};
+
 /** User Query */
 export type GQLQuery = {
   __typename?: 'Query';
   /** Query to get an Board */
   board?: Maybe<GQLBoard>;
+  /** Query to get an User */
+  message?: Maybe<GQLMessage>;
   /** Query to get a Section */
   section?: Maybe<GQLSection>;
   /** Query to get an User */
@@ -138,6 +157,8 @@ export type GQLResolversTypes = {
   Boolean: ResolverTypeWrapper<Scalars['Boolean']['output']>;
   DateTime: ResolverTypeWrapper<Scalars['DateTime']['output']>;
   ID: ResolverTypeWrapper<Scalars['ID']['output']>;
+  Int: ResolverTypeWrapper<Scalars['Int']['output']>;
+  Message: ResolverTypeWrapper<GQLMessage>;
   Query: ResolverTypeWrapper<{}>;
   Section: ResolverTypeWrapper<GQLSection>;
   String: ResolverTypeWrapper<Scalars['String']['output']>;
@@ -150,6 +171,8 @@ export type GQLResolversParentTypes = {
   Boolean: Scalars['Boolean']['output'];
   DateTime: Scalars['DateTime']['output'];
   ID: Scalars['ID']['output'];
+  Int: Scalars['Int']['output'];
+  Message: GQLMessage;
   Query: {};
   Section: GQLSection;
   String: Scalars['String']['output'];
@@ -167,8 +190,19 @@ export interface GQLDateTimeScalarConfig extends GraphQLScalarTypeConfig<GQLReso
   name: 'DateTime';
 }
 
+export type GQLMessageResolvers<ContextType = MyContext, ParentType extends GQLResolversParentTypes['Message'] = GQLResolversParentTypes['Message']> = {
+  board?: Resolver<GQLResolversTypes['Int'], ParentType, ContextType>;
+  creationDate?: Resolver<GQLResolversTypes['DateTime'], ParentType, ContextType>;
+  id?: Resolver<GQLResolversTypes['ID'], ParentType, ContextType>;
+  section?: Resolver<GQLResolversTypes['Int'], ParentType, ContextType>;
+  text?: Resolver<GQLResolversTypes['String'], ParentType, ContextType>;
+  user?: Resolver<GQLResolversTypes['Int'], ParentType, ContextType>;
+  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
+};
+
 export type GQLQueryResolvers<ContextType = MyContext, ParentType extends GQLResolversParentTypes['Query'] = GQLResolversParentTypes['Query']> = {
   board?: Resolver<Maybe<GQLResolversTypes['Board']>, ParentType, ContextType>;
+  message?: Resolver<Maybe<GQLResolversTypes['Message']>, ParentType, ContextType>;
   section?: Resolver<Maybe<GQLResolversTypes['Section']>, ParentType, ContextType>;
   user?: Resolver<Maybe<GQLResolversTypes['User']>, ParentType, ContextType>;
 };
@@ -192,6 +226,7 @@ export type GQLUserResolvers<ContextType = MyContext, ParentType extends GQLReso
 export type GQLResolvers<ContextType = MyContext> = {
   Board?: GQLBoardResolvers<ContextType>;
   DateTime?: GraphQLScalarType;
+  Message?: GQLMessageResolvers<ContextType>;
   Query?: GQLQueryResolvers<ContextType>;
   Section?: GQLSectionResolvers<ContextType>;
   User?: GQLUserResolvers<ContextType>;
