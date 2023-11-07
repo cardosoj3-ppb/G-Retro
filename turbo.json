@@ -10,7 +10,7 @@
       ],
       "outputs": []
     },
-    "lint": {
+    "check": {
       "dependsOn": [
         "generate"
       ],
@@ -19,7 +19,7 @@
     "build": {
       "dependsOn": [
         "generate",
-        "lint"
+        "check"
       ],
       "outputs": [
         "dist"
