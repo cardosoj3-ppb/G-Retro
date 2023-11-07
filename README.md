@@ -33,3 +33,15 @@ Run GraphQL Code Generator:
 ```sh
 npm run codegen
 ```
+
+Docker setup:
+
+```sh
+docker compose build
+```
+
+Docker run:
+
+```sh
+docker compose up -d
+```
