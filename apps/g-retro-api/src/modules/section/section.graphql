@@ -1,0 +1,23 @@
+"""
+Section Type
+"""
+type Section {
+  """
+  Id of Section
+  """
+  id: ID!
+  """
+  Name of Section
+  """
+  name: String!
+}
+
+"""
+Section Query
+"""
+type Query {
+  """
+  Query to get a Section
+  """
+  section: Section
+}
