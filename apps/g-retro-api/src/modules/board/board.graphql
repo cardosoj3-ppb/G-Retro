@@ -1,0 +1,27 @@
+"""
+Board Type
+"""
+type Board {
+  """
+  Id of Board
+  """
+  id: ID!
+  """
+  Email of Board
+  """
+  title: String!
+  """
+  Creation date of Board
+  """
+  creationDate: DateTime!
+}
+
+"""
+Board Query
+"""
+type Query {
+  """
+  Query to get an Board
+  """
+  board: Board
+}
