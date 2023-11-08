@@ -1,3 +1,5 @@
+import { UserEntity } from '../../entity';
+
 import type { GQLUserResolvers, GQLQueryResolvers } from '@gql-types';
 
 export const User: GQLUserResolvers = {
@@ -22,7 +24,10 @@ export const User: GQLUserResolvers = {
 };
 
 export const Query: GQLQueryResolvers = {
-  user: () => {
+  user: async (_, __, { entityManager }) => {
+    const userlists = await entityManager.find(UserEntity);
+    console.log(userlists);
+
     return {
       id: '1',
       firstName: 'smtg',
