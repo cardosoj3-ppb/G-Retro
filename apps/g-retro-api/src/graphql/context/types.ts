@@ -1,3 +1,5 @@
+import type { EntityManager } from 'typeorm';
+
 export type MyContext = {
-  token?: string;
+  entityManager: EntityManager;
 };
