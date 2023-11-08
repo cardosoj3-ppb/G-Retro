@@ -1,3 +1,5 @@
+import { join } from 'node:path';
+
 import { DataSource, type EntityManager } from 'typeorm';
 
 import type { ServerConfig } from '../server-config';
@@ -10,9 +12,10 @@ export async function buildDatabaseConnection(serverConfig: ServerConfig): Promi
     username: serverConfig.databaseUsername,
     password: serverConfig.databasePassword,
     database: serverConfig.databaseName,
-    entities: ['../../entity/**/*{.js,.ts}'],
+    // entities: ['../../entity/**/*{.js,.ts}'],
+    entities: [join(__dirname, '../../entity/**/*.entity{.ts,.js}')],
     synchronize: false,
-    logging: false,
+    logging: true,
   });
 
   try {
