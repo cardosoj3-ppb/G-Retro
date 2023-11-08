@@ -11,6 +11,8 @@
     "baseUrl": ".",
     "rootDir": "./src",
     "outDir": "./dist",
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
     "paths": {
       "@gql-types": [
         "./src/generated/graphql-types"

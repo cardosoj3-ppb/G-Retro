@@ -1,23 +1,23 @@
 import type { GQLMessageResolvers, GQLQueryResolvers } from '@gql-types';
 
 export const Message: GQLMessageResolvers = {
-  id: () => {
-    return '1';
+  id: ({ id }) => {
+    return id;
   },
-  text: () => {
-    return 'Some text';
+  text: ({ text }) => {
+    return text;
   },
-  user: () => {
-    return 1;
+  user: ({ user }) => {
+    return user;
   },
-  board: () => {
-    return 1;
+  board: ({ board }) => {
+    return board;
   },
-  section: () => {
-    return 1;
+  section: ({ section }) => {
+    return section;
   },
-  creationDate: () => {
-    return new Date();
+  creationDate: ({ creationDate }) => {
+    return creationDate;
   },
 };
 
@@ -25,7 +25,7 @@ export const Query: GQLQueryResolvers = {
   message: () => {
     return {
       id: '1',
-      text: 'Some text',
+      text: 'Some text2',
       user: 1,
       board: 1,
       section: 1,
