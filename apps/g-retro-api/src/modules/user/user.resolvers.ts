@@ -1,4 +1,4 @@
-import { SectionEntity } from '../../entity';
+import { MessageEntity } from '../../entity';
 
 import type { GQLUserResolvers, GQLQueryResolvers } from '@gql-types';
 
@@ -25,7 +25,7 @@ export const User: GQLUserResolvers = {
 
 export const Query: GQLQueryResolvers = {
   user: async (_, __, { entityManager }) => {
-    const userlists = await entityManager.find(SectionEntity);
+    const userlists = await entityManager.find(MessageEntity);
     console.log(userlists);
 
     return {
