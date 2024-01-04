@@ -12,6 +12,7 @@
     "generate": "turbo run generate",
     "check": "turbo run check",
     "build": "turbo run build",
+    "docker": "turbo run docker",
     "dev": "turbo run dev",
     "format": "prettier --write \"**/*.{ts,tsx,md}\"",
     "commit": "cz"

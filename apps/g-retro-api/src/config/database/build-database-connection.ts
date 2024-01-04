@@ -21,6 +21,7 @@ export async function buildDatabaseConnection(serverConfig: ServerConfig): Promi
   try {
     const dataSource = await appDataSource.initialize();
     console.log('Data Source has been initialized!');
+
     return dataSource.manager;
   } catch (error) {
     if (error instanceof Error) {
