@@ -1,5 +1,5 @@
-import type { EntityManager } from 'typeorm';
+import type { UserService } from '../../services';
 
 export type MyContext = {
-  entityManager: EntityManager;
+  userService: UserService;
 };

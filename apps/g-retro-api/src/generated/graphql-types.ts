@@ -8,6 +8,25 @@ export type MakeOptional<T, K extends keyof T> = Omit<T, K> & { [SubKey in K]?: 
 export type MakeMaybe<T, K extends keyof T> = Omit<T, K> & { [SubKey in K]: Maybe<T[SubKey]> };
 export type MakeEmpty<T extends { [key: string]: unknown }, K extends keyof T> = { [_ in K]?: never };
 export type Incremental<T> = T | { [P in keyof T]?: P extends ' $fragmentName' | '__typename' ? T[P] : never };
+export type ResolverFn<TResult, TParent, TContext, TArgs> = (parent: ResolverTypeParentWrapperPicked<TParent>, args: TArgs, context: TContext, info: GraphQLResolveInfo) => Promise < TResult > | TResult
+export type RequireFields<T, K extends keyof T> = Omit<T, K> & { [P in K]-?: NonNullable<T[P]> };
+
+/**
+ * The ResolverTypeWrapperPicked, in conjunction with resolverTypeWrapperSignature in config, will override the resolvers' return type.
+ * This forces resolvers that return addressable entities to return their IDs only.
+ * This works recursively to support relay relationships (connection - edge - node pattern).
+ */
+export type ResolverTypeWrapperPicked<T> = T extends NonNullable<T>
+	? 'id' extends keyof NonNullable<T>
+		? Pick<NonNullable<T>, 'id'>
+		: { [K in keyof T]: ResolverTypeWrapperPicked<NonNullable<T>[K]> }
+	: null | undefined;
+
+/**
+ * The ResolverTypeParentWrapperPicked is similar to the one above, but instead of the return type of resolvers, it Picks the id from the parent param from the resolvers.
+ */
+export type ResolverTypeParentWrapperPicked<T> = 'id' extends keyof T ? Pick<T, 'id'> : T;
+
 /** All built-in and custom scalars, mapped to their actual values */
 export type Scalars = {
   ID: { input: string; output: string; }
@@ -34,17 +53,17 @@ export type GQLBoard = {
 export type GQLMessage = {
   __typename?: 'Message';
   /** Board of message */
-  board: Scalars['Int']['output'];
+  board: GQLBoard;
   /** Creation date of message */
   creationDate: Scalars['DateTime']['output'];
   /** Id of message */
   id: Scalars['ID']['output'];
   /** Section of message */
-  section: Scalars['Int']['output'];
+  section: GQLSection;
   /** Text of message */
   text: Scalars['String']['output'];
   /** User of message */
-  user: Scalars['Int']['output'];
+  user: GQLUser;
 };
 
 /** User Query */
@@ -58,6 +77,12 @@ export type GQLQuery = {
   section?: Maybe<GQLSection>;
   /** Query to get an User */
   user?: Maybe<GQLUser>;
+};
+
+
+/** User Query */
+export type GQLQueryUserArgs = {
+  id: Scalars['ID']['input'];
 };
 
 /** Section Type */
@@ -88,16 +113,9 @@ export type GQLUser = {
 
 
 
-export type ResolverTypeWrapper<T> = Promise<T> | T;
+export type ResolverTypeWrapper<T> = ResolverTypeWrapperPicked<T>;
 
 export type Resolver<TResult, TParent = {}, TContext = {}, TArgs = {}> = ResolverFn<TResult, TParent, TContext, TArgs>;
-
-export type ResolverFn<TResult, TParent, TContext, TArgs> = (
-  parent: TParent,
-  args: TArgs,
-  context: TContext,
-  info: GraphQLResolveInfo
-) => Promise<TResult> | TResult;
 
 export type SubscriptionSubscribeFn<TResult, TParent, TContext, TArgs> = (
   parent: TParent,
@@ -157,7 +175,6 @@ export type GQLResolversTypes = {
   Boolean: ResolverTypeWrapper<Scalars['Boolean']['output']>;
   DateTime: ResolverTypeWrapper<Scalars['DateTime']['output']>;
   ID: ResolverTypeWrapper<Scalars['ID']['output']>;
-  Int: ResolverTypeWrapper<Scalars['Int']['output']>;
   Message: ResolverTypeWrapper<GQLMessage>;
   Query: ResolverTypeWrapper<{}>;
   Section: ResolverTypeWrapper<GQLSection>;
@@ -171,7 +188,6 @@ export type GQLResolversParentTypes = {
   Boolean: Scalars['Boolean']['output'];
   DateTime: Scalars['DateTime']['output'];
   ID: Scalars['ID']['output'];
-  Int: Scalars['Int']['output'];
   Message: GQLMessage;
   Query: {};
   Section: GQLSection;
@@ -191,12 +207,12 @@ export interface GQLDateTimeScalarConfig extends GraphQLScalarTypeConfig<GQLReso
 }
 
 export type GQLMessageResolvers<ContextType = MyContext, ParentType extends GQLResolversParentTypes['Message'] = GQLResolversParentTypes['Message']> = {
-  board?: Resolver<GQLResolversTypes['Int'], ParentType, ContextType>;
+  board?: Resolver<GQLResolversTypes['Board'], ParentType, ContextType>;
   creationDate?: Resolver<GQLResolversTypes['DateTime'], ParentType, ContextType>;
   id?: Resolver<GQLResolversTypes['ID'], ParentType, ContextType>;
-  section?: Resolver<GQLResolversTypes['Int'], ParentType, ContextType>;
+  section?: Resolver<GQLResolversTypes['Section'], ParentType, ContextType>;
   text?: Resolver<GQLResolversTypes['String'], ParentType, ContextType>;
-  user?: Resolver<GQLResolversTypes['Int'], ParentType, ContextType>;
+  user?: Resolver<GQLResolversTypes['User'], ParentType, ContextType>;
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
 };
 
@@ -204,7 +220,7 @@ export type GQLQueryResolvers<ContextType = MyContext, ParentType extends GQLRes
   board?: Resolver<Maybe<GQLResolversTypes['Board']>, ParentType, ContextType>;
   message?: Resolver<Maybe<GQLResolversTypes['Message']>, ParentType, ContextType>;
   section?: Resolver<Maybe<GQLResolversTypes['Section']>, ParentType, ContextType>;
-  user?: Resolver<Maybe<GQLResolversTypes['User']>, ParentType, ContextType>;
+  user?: Resolver<Maybe<GQLResolversTypes['User']>, ParentType, ContextType, RequireFields<GQLQueryUserArgs, 'id'>>;
 };
 
 export type GQLSectionResolvers<ContextType = MyContext, ParentType extends GQLResolversParentTypes['Section'] = GQLResolversParentTypes['Section']> = {

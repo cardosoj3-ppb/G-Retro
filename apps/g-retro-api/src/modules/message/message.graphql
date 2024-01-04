@@ -13,15 +13,15 @@ type Message {
   """
   User of message
   """
-  user: Int!
+  user: User!
   """
   Board of message
   """
-  board: Int!
+  board: Board!
   """
   Section of message
   """
-  section: Int!
+  section: Section!
   """
   Creation date of message
   """

@@ -22,7 +22,7 @@ export class UserEntity {
   @Column({ type: 'character varying', name: 'token', nullable: true, unique: true })
   public token!: string | null;
 
-  @Column({ type: 'timestamp with time zone', name: 'creationDate' })
+  @Column({ type: 'timestamp with time zone', name: 'creation_date' })
   public creationDate!: Date;
 
   @OneToMany(() => MessageEntity, message => message.user, { lazy: true })
