@@ -1,67 +1,33 @@
-import { Column, Entity, PrimaryColumn } from 'typeorm';
+import { Column, Entity, JoinTable, ManyToMany, OneToMany, PrimaryColumn } from 'typeorm';
+
+import { MessageEntity } from '../message';
+import { SectionEntity } from '../section';
 
 @Entity({ schema: 'app', name: 'board' })
 export class BoardEntity {
   @PrimaryColumn({ type: 'character varying', name: 'id' })
-  private id: string;
+  public id!: string;
 
   @Column({ type: 'character varying', name: 'title' })
-  private title: string;
+  public title!: string;
 
   @Column({ type: 'timestamp with time zone', name: 'creation_date' })
-  private creationDate: Date;
+  public creationDate!: Date;
 
-  constructor($id: string, $title: string, $creationDate: Date) {
-    this.id = $id;
-    this.title = $title;
-    this.creationDate = $creationDate;
-  }
+  @OneToMany(() => MessageEntity, message => message.board, { lazy: true })
+  public messages!: Promise<MessageEntity[]>;
 
-  /**
-   * Getter $id
-   * @return {string}
-   */
-  public get $id(): string {
-    return this.id;
-  }
-
-  /**
-   * Getter $title
-   * @return {string}
-   */
-  public get $title(): string {
-    return this.title;
-  }
-
-  /**
-   * Getter $creationDate
-   * @return {Date}
-   */
-  public get $creationDate(): Date {
-    return this.creationDate;
-  }
-
-  /**
-   * Setter $id
-   * @param {string} value
-   */
-  public set $id(value: string) {
-    this.id = value;
-  }
-
-  /**
-   * Setter $title
-   * @param {string} value
-   */
-  public set $title(value: string) {
-    this.title = value;
-  }
-
-  /**
-   * Setter $creationDate
-   * @param {Date} value
-   */
-  public set $creationDate(value: Date) {
-    this.creationDate = value;
-  }
+  @ManyToMany(() => SectionEntity, { lazy: true })
+  @JoinTable({
+    name: 'board_section', // table name for the junction table of this relation
+    joinColumn: {
+      name: 'board',
+      referencedColumnName: 'id',
+    },
+    inverseJoinColumn: {
+      name: 'section',
+      referencedColumnName: 'id',
+    },
+  })
+  public sections!: Promise<SectionEntity[]>;
 }

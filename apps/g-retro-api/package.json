@@ -11,6 +11,8 @@
     "check:lint": "eslint .",
     "check:ts": "tsc --noEmit",
     "build": "tsc",
+    "docker-build": "docker compose build",
+    "docker-up": "docker compose up -d",
     "dev": "ts-node-dev --respawn --inspect=0.0.0.0:9229 --transpile-only ./src/index.ts"
   },
   "author": "",

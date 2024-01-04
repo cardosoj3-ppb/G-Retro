@@ -54,6 +54,7 @@ import { type MyContext, buildResolvers, buildSchema, buildContext } from './gra
 
   // Modified server startup
   httpServer.listen({ port: 4000 }, () => {
-    console.log('🚀 Server ready at http://localhost:4000/');
+    console.log('🚀 Apollo Server ready at http://localhost:4000/graphql');
+    console.log('🚀 PgAdmin Server ready at http://localhost:5050/browser/');
   });
 })();

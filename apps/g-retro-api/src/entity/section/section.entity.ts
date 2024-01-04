@@ -1,47 +1,30 @@
-import { Column, Entity, PrimaryColumn } from 'typeorm';
+import { Column, Entity, JoinTable, ManyToMany, OneToMany, PrimaryColumn } from 'typeorm';
+
+import { BoardEntity } from '../board';
+import { MessageEntity } from '../message';
 
 @Entity({ schema: 'app', name: 'section' })
 export class SectionEntity {
   @PrimaryColumn({ type: 'character varying', name: 'id' })
-  private id: string;
+  public id!: string;
 
   @Column({ type: 'character varying', name: 'name' })
-  private name: string;
+  public name!: string;
 
-  constructor($id: string, $name: string) {
-    this.id = $id;
-    this.name = $name;
-  }
+  @OneToMany(() => MessageEntity, message => message.section, { lazy: true })
+  public messages!: Promise<MessageEntity[]>;
 
-  /**
-   * Getter $id
-   * @return {string}
-   */
-  public get $id(): string {
-    return this.id;
-  }
-
-  /**
-   * Getter $name
-   * @return {string}
-   */
-  public get $name(): string {
-    return this.name;
-  }
-
-  /**
-   * Setter $id
-   * @param {string} value
-   */
-  public set $id(value: string) {
-    this.id = value;
-  }
-
-  /**
-   * Setter $name
-   * @param {string} value
-   */
-  public set $name(value: string) {
-    this.name = value;
-  }
+  @ManyToMany(() => BoardEntity, { lazy: true })
+  @JoinTable({
+    name: 'board_section', // table name for the junction table of this relation
+    joinColumn: {
+      name: 'section',
+      referencedColumnName: 'id',
+    },
+    inverseJoinColumn: {
+      name: 'board',
+      referencedColumnName: 'id',
+    },
+  })
+  public boards!: Promise<BoardEntity[]>;
 }

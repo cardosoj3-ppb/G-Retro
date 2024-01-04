@@ -25,7 +25,24 @@
         "dist"
       ]
     },
+    "docker-build": {
+      "dependsOn": [
+      ]
+    },
+    "docker-up": {
+      "dependsOn": [
+        "docker-build"
+      ]
+    },
+    "docker":{
+      "dependsOn": [
+        "docker-up"
+      ]
+    },
     "dev": {
+      "dependsOn": [
+        "docker"
+      ],
       "cache": false,
       "persistent": true
     }
