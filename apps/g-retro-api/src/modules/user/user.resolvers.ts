@@ -1,39 +1,66 @@
-import { MessageEntity } from '../../entity';
-
 import type { GQLUserResolvers, GQLQueryResolvers } from '@gql-types';
 
 export const User: GQLUserResolvers = {
-  id: () => {
-    return '1';
+  id: async ({ id }, _, { userService }) => {
+    const user = await userService.getUserById(id);
+
+    if (user instanceof Error) {
+      throw user;
+    }
+
+    return user.id;
   },
-  email: () => {
-    return 'efejfj@gmail.com';
+  email: async ({ id }, _, { userService }) => {
+    const user = await userService.getUserById(id);
+
+    if (user instanceof Error) {
+      throw user;
+    }
+
+    return user.email;
   },
-  firstName: () => {
-    return 'Smtg';
+  firstName: async ({ id }, _, { userService }) => {
+    const user = await userService.getUserById(id);
+
+    if (user instanceof Error) {
+      throw user;
+    }
+
+    return user.firstName;
   },
-  lastName: () => {
-    return 'lAST';
+  lastName: async ({ id }, _, { userService }) => {
+    const user = await userService.getUserById(id);
+
+    if (user instanceof Error) {
+      throw user;
+    }
+
+    return user.lastName;
   },
-  token: () => {
-    return 'efeirgerge23';
+  token: async ({ id }, _, { userService }) => {
+    const user = await userService.getUserById(id);
+
+    if (user instanceof Error) {
+      throw user;
+    }
+
+    return user.token;
   },
-  creationDate: () => {
-    return new Date();
+  creationDate: async ({ id }, _, { userService }) => {
+    const user = await userService.getUserById(id);
+
+    if (user instanceof Error) {
+      throw user;
+    }
+
+    return user.creationDate;
   },
 };
 
 export const Query: GQLQueryResolvers = {
-  user: async (_, __, { entityManager }) => {
-    const userlists = await entityManager.find(MessageEntity);
-    console.log(userlists);
-
+  user: async (_, { id }) => {
     return {
-      id: '1',
-      firstName: 'smtg',
-      lastName: 'ad',
-      email: 'email',
-      creationDate: new Date(),
+      id: id,
     };
   },
 };

@@ -4,20 +4,26 @@ export const Message: GQLMessageResolvers = {
   id: ({ id }) => {
     return id;
   },
-  text: ({ text }) => {
-    return text;
+  text: () => {
+    return 'Some text2';
   },
-  user: ({ user }) => {
-    return user;
+  user: () => {
+    return {
+      id: '1',
+    };
   },
-  board: ({ board }) => {
-    return board;
+  board: () => {
+    return {
+      id: '1',
+    };
   },
-  section: ({ section }) => {
-    return section;
+  section: () => {
+    return {
+      id: '1',
+    };
   },
-  creationDate: ({ creationDate }) => {
-    return creationDate;
+  creationDate: () => {
+    return new Date();
   },
 };
 
@@ -25,11 +31,6 @@ export const Query: GQLQueryResolvers = {
   message: () => {
     return {
       id: '1',
-      text: 'Some text2',
-      user: 1,
-      board: 1,
-      section: 1,
-      creationDate: new Date(),
     };
   },
 };

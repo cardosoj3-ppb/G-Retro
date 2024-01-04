@@ -35,5 +35,5 @@ type Query {
   """
   Query to get an User
   """
-  user: User
+  user(id: ID!): User
 }
