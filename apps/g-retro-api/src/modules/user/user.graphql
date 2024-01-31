@@ -33,7 +33,12 @@ User Query
 """
 type Query {
   """
-  Query to get an User
+  Query to get an User by Id
   """
-  user(id: ID!): User
+  userById(id: ID!): User
+
+  """
+  Query to get an User by Email
+  """
+  userByEmail(email: String!): User
 }

@@ -58,9 +58,20 @@ export const User: GQLUserResolvers = {
 };
 
 export const Query: GQLQueryResolvers = {
-  user: async (_, { id }) => {
+  userById: async (_, { id }) => {
     return {
       id: id,
+    };
+  },
+  userByEmail: async (_, { email }, { userService }) => {
+    const user = await userService.getUserByEmail(email);
+
+    if (user instanceof Error) {
+      throw user;
+    }
+
+    return {
+      id: user.id,
     };
   },
 };
