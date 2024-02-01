@@ -79,6 +79,8 @@ export type GQLQuery = {
   userByEmail?: Maybe<GQLUser>;
   /** Query to get an User by Id */
   userById?: Maybe<GQLUser>;
+  /** Query to get an User by Token */
+  userByToken?: Maybe<GQLUser>;
 };
 
 
@@ -91,6 +93,12 @@ export type GQLQueryUserByEmailArgs = {
 /** User Query */
 export type GQLQueryUserByIdArgs = {
   id: Scalars['ID']['input'];
+};
+
+
+/** User Query */
+export type GQLQueryUserByTokenArgs = {
+  token: Scalars['String']['input'];
 };
 
 /** Section Type */
@@ -230,6 +238,7 @@ export type GQLQueryResolvers<ContextType = MyContext, ParentType extends GQLRes
   section?: Resolver<Maybe<GQLResolversTypes['Section']>, ParentType, ContextType>;
   userByEmail?: Resolver<Maybe<GQLResolversTypes['User']>, ParentType, ContextType, RequireFields<GQLQueryUserByEmailArgs, 'email'>>;
   userById?: Resolver<Maybe<GQLResolversTypes['User']>, ParentType, ContextType, RequireFields<GQLQueryUserByIdArgs, 'id'>>;
+  userByToken?: Resolver<Maybe<GQLResolversTypes['User']>, ParentType, ContextType, RequireFields<GQLQueryUserByTokenArgs, 'token'>>;
 };
 
 export type GQLSectionResolvers<ContextType = MyContext, ParentType extends GQLResolversParentTypes['Section'] = GQLResolversParentTypes['Section']> = {
