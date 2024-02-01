@@ -6,6 +6,7 @@ import { UserEntity } from '../../entity';
 export class UserService {
   private userByIdLoader: DataLoader<string, UserEntity | null, string>;
   private userByEmailLoader: DataLoader<string, UserEntity | null, string>;
+  private userByTokenLoader: DataLoader<string, UserEntity | null, string>;
 
   constructor(private entityManager: EntityManager) {
     this.userByIdLoader = new DataLoader(async (idList: readonly string[]) => {
@@ -55,6 +56,33 @@ export class UserService {
         return user ? user : null;
       });
     });
+
+    this.userByTokenLoader = new DataLoader(async (tokenList: readonly string[]) => {
+      const users = await this.entityManager.find(UserEntity, {
+        where: {
+          token: In(tokenList),
+        },
+      });
+
+      const usersMap = users.reduce<Record<string, UserEntity>>((map, user) => {
+        if (user.token) {
+          map[user.token] = user;
+        }
+
+        return map;
+      }, {});
+
+      return tokenList.map(token => {
+        const user = usersMap[token];
+
+        if (user instanceof UserEntity) {
+          this.userByIdLoader.prime(user.id, user);
+          this.userByEmailLoader.prime(user.email, user);
+        }
+
+        return user ? user : null;
+      });
+    });
   }
 
   public async getUserById(userId: string): Promise<UserEntity | Error> {
@@ -67,5 +95,11 @@ export class UserService {
     const user = await this.userByEmailLoader.load(userEmail);
 
     return user ? user : new Error(`User with email: ${userEmail} not found.`);
+  }
+
+  public async getUserByToken(userEmail: string): Promise<UserEntity | Error> {
+    const user = await this.userByTokenLoader.load(userEmail);
+
+    return user ? user : new Error(`User with Token: ${userEmail} not found.`);
   }
 }

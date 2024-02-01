@@ -41,4 +41,9 @@ type Query {
   Query to get an User by Email
   """
   userByEmail(email: String!): User
+
+  """
+  Query to get an User by Token
+  """
+  userByToken(token: String!): User
 }

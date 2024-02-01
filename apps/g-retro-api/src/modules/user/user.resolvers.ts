@@ -74,4 +74,15 @@ export const Query: GQLQueryResolvers = {
       id: user.id,
     };
   },
+  userByToken: async (_, { token }, { userService }) => {
+    const user = await userService.getUserByToken(token);
+
+    if (user instanceof Error) {
+      throw user;
+    }
+
+    return {
+      id: user.id,
+    };
+  },
 };
