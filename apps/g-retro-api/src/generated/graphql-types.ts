@@ -75,8 +75,10 @@ export type GQLQuery = {
   boardByTitle?: Maybe<GQLBoard>;
   /** Query to get an User */
   message?: Maybe<GQLMessage>;
-  /** Query to get a Section */
-  section?: Maybe<GQLSection>;
+  /** Query to get a Section by Id */
+  sectionById?: Maybe<GQLSection>;
+  /** Query to get a Section by Name */
+  sectionByName?: Maybe<GQLSection>;
   /** Query to get an User by Email */
   userByEmail?: Maybe<GQLUser>;
   /** Query to get an User by Id */
@@ -95,6 +97,18 @@ export type GQLQueryBoardByIdArgs = {
 /** User Query */
 export type GQLQueryBoardByTitleArgs = {
   title: Scalars['String']['input'];
+};
+
+
+/** User Query */
+export type GQLQuerySectionByIdArgs = {
+  id: Scalars['ID']['input'];
+};
+
+
+/** User Query */
+export type GQLQuerySectionByNameArgs = {
+  name: Scalars['String']['input'];
 };
 
 
@@ -250,7 +264,8 @@ export type GQLQueryResolvers<ContextType = MyContext, ParentType extends GQLRes
   boardById?: Resolver<Maybe<GQLResolversTypes['Board']>, ParentType, ContextType, RequireFields<GQLQueryBoardByIdArgs, 'id'>>;
   boardByTitle?: Resolver<Maybe<GQLResolversTypes['Board']>, ParentType, ContextType, RequireFields<GQLQueryBoardByTitleArgs, 'title'>>;
   message?: Resolver<Maybe<GQLResolversTypes['Message']>, ParentType, ContextType>;
-  section?: Resolver<Maybe<GQLResolversTypes['Section']>, ParentType, ContextType>;
+  sectionById?: Resolver<Maybe<GQLResolversTypes['Section']>, ParentType, ContextType, RequireFields<GQLQuerySectionByIdArgs, 'id'>>;
+  sectionByName?: Resolver<Maybe<GQLResolversTypes['Section']>, ParentType, ContextType, RequireFields<GQLQuerySectionByNameArgs, 'name'>>;
   userByEmail?: Resolver<Maybe<GQLResolversTypes['User']>, ParentType, ContextType, RequireFields<GQLQueryUserByEmailArgs, 'email'>>;
   userById?: Resolver<Maybe<GQLResolversTypes['User']>, ParentType, ContextType, RequireFields<GQLQueryUserByIdArgs, 'id'>>;
   userByToken?: Resolver<Maybe<GQLResolversTypes['User']>, ParentType, ContextType, RequireFields<GQLQueryUserByTokenArgs, 'token'>>;
