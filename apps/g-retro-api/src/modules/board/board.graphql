@@ -21,7 +21,12 @@ Board Query
 """
 type Query {
   """
-  Query to get an Board
+  Query to get a Board by id
   """
-  board: Board
+  boardById(id: ID!): Board
+
+  """
+  Query to get a Board by title
+  """
+  boardByTitle(title: String!): Board
 }

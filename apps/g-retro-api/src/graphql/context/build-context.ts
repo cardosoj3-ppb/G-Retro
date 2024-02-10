@@ -1,4 +1,4 @@
-import { UserService } from '../../services';
+import { BoardService, UserService } from '../../services';
 
 import type { MyContext } from './types.js';
 import type { ContextFunction } from '@apollo/server';
@@ -10,9 +10,11 @@ export const buildContext = (
 ): ContextFunction<Array<ExpressContextFunctionArgument>, MyContext> => {
   return async (): Promise<MyContext> => {
     const userService = new UserService(entityManager);
+    const boardService = new BoardService(entityManager);
 
     return {
       userService,
+      boardService,
     };
   };
 };
