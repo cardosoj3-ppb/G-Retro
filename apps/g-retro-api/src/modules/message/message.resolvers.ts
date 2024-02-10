@@ -1,36 +1,66 @@
 import type { GQLMessageResolvers, GQLQueryResolvers } from '@gql-types';
 
 export const Message: GQLMessageResolvers = {
-  id: ({ id }) => {
-    return id;
+  id: async ({ id }, _, { messageService }) => {
+    const message = await messageService.getMessageById(id);
+
+    if (message instanceof Error) {
+      throw message;
+    }
+
+    return message.id;
   },
-  text: () => {
-    return 'Some text2';
+  text: async ({ id }, _, { messageService }) => {
+    const message = await messageService.getMessageById(id);
+
+    if (message instanceof Error) {
+      throw message;
+    }
+
+    return message.text;
   },
-  user: () => {
-    return {
-      id: '1',
-    };
+  user: async ({ id }, _, { messageService }) => {
+    const message = await messageService.getMessageById(id);
+
+    if (message instanceof Error) {
+      throw message;
+    }
+
+    return message.user;
   },
-  board: () => {
-    return {
-      id: '1',
-    };
+  board: async ({ id }, _, { messageService }) => {
+    const message = await messageService.getMessageById(id);
+
+    if (message instanceof Error) {
+      throw message;
+    }
+
+    return message.board;
   },
-  section: () => {
-    return {
-      id: '1',
-    };
+  section: async ({ id }, _, { messageService }) => {
+    const message = await messageService.getMessageById(id);
+
+    if (message instanceof Error) {
+      throw message;
+    }
+
+    return message.section;
   },
-  creationDate: () => {
-    return new Date();
+  creationDate: async ({ id }, _, { messageService }) => {
+    const message = await messageService.getMessageById(id);
+
+    if (message instanceof Error) {
+      throw message;
+    }
+
+    return message.creationDate;
   },
 };
 
 export const Query: GQLQueryResolvers = {
-  message: () => {
+  messageById: (_, { id }) => {
     return {
-      id: '1',
+      id: id,
     };
   },
 };

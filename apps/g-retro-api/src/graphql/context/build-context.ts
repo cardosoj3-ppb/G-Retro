@@ -1,4 +1,4 @@
-import { BoardService, SectionService,UserService } from '../../services';
+import { BoardService, SectionService, UserService, MessageService } from '../../services';
 
 import type { MyContext } from './types.js';
 import type { ContextFunction } from '@apollo/server';
@@ -12,11 +12,13 @@ export const buildContext = (
     const userService = new UserService(entityManager);
     const boardService = new BoardService(entityManager);
     const sectionService = new SectionService(entityManager);
+    const messageService = new MessageService(entityManager);
 
     return {
       userService,
       boardService,
       sectionService,
+      messageService,
     };
   };
 };

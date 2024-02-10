@@ -33,7 +33,7 @@ Message Query
 """
 type Query {
   """
-  Query to get an User
+  Query to get a Message by Id
   """
-  message: Message
+  messageById(id: ID!): Message
 }

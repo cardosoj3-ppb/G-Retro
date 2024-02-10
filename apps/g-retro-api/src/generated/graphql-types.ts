@@ -73,8 +73,8 @@ export type GQLQuery = {
   boardById?: Maybe<GQLBoard>;
   /** Query to get a Board by title */
   boardByTitle?: Maybe<GQLBoard>;
-  /** Query to get an User */
-  message?: Maybe<GQLMessage>;
+  /** Query to get a Message by Id */
+  messageById?: Maybe<GQLMessage>;
   /** Query to get a Section by Id */
   sectionById?: Maybe<GQLSection>;
   /** Query to get a Section by Name */
@@ -97,6 +97,12 @@ export type GQLQueryBoardByIdArgs = {
 /** User Query */
 export type GQLQueryBoardByTitleArgs = {
   title: Scalars['String']['input'];
+};
+
+
+/** User Query */
+export type GQLQueryMessageByIdArgs = {
+  id: Scalars['ID']['input'];
 };
 
 
@@ -263,7 +269,7 @@ export type GQLMessageResolvers<ContextType = MyContext, ParentType extends GQLR
 export type GQLQueryResolvers<ContextType = MyContext, ParentType extends GQLResolversParentTypes['Query'] = GQLResolversParentTypes['Query']> = {
   boardById?: Resolver<Maybe<GQLResolversTypes['Board']>, ParentType, ContextType, RequireFields<GQLQueryBoardByIdArgs, 'id'>>;
   boardByTitle?: Resolver<Maybe<GQLResolversTypes['Board']>, ParentType, ContextType, RequireFields<GQLQueryBoardByTitleArgs, 'title'>>;
-  message?: Resolver<Maybe<GQLResolversTypes['Message']>, ParentType, ContextType>;
+  messageById?: Resolver<Maybe<GQLResolversTypes['Message']>, ParentType, ContextType, RequireFields<GQLQueryMessageByIdArgs, 'id'>>;
   sectionById?: Resolver<Maybe<GQLResolversTypes['Section']>, ParentType, ContextType, RequireFields<GQLQuerySectionByIdArgs, 'id'>>;
   sectionByName?: Resolver<Maybe<GQLResolversTypes['Section']>, ParentType, ContextType, RequireFields<GQLQuerySectionByNameArgs, 'name'>>;
   userByEmail?: Resolver<Maybe<GQLResolversTypes['User']>, ParentType, ContextType, RequireFields<GQLQueryUserByEmailArgs, 'email'>>;
