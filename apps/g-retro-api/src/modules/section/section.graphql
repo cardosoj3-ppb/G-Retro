@@ -17,7 +17,12 @@ Section Query
 """
 type Query {
   """
-  Query to get a Section
+  Query to get a Section by Id
   """
-  section: Section
+  sectionById(id: ID!): Section
+
+  """
+  Query to get a Section by Name
+  """
+  sectionByName(name: String!): Section
 }
