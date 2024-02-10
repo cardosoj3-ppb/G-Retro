@@ -1,23 +1,51 @@
 import type { GQLBoardResolvers, GQLQueryResolvers } from '@gql-types';
 
 export const Board: GQLBoardResolvers = {
-  id: () => {
-    return '1';
+  id: async ({ id }, _, { boardService }) => {
+    const board = await boardService.getBoardById(id);
+
+    if (board instanceof Error) {
+      throw board;
+    }
+
+    return board.id;
   },
-  title: () => {
-    return 'Board1';
+  title: async ({ id }, _, { boardService }) => {
+    const board = await boardService.getBoardById(id);
+
+    if (board instanceof Error) {
+      throw board;
+    }
+
+    return board.title;
   },
-  creationDate: () => {
-    return new Date();
+  creationDate: async ({ id }, _, { boardService }) => {
+    const board = await boardService.getBoardById(id);
+
+    if (board instanceof Error) {
+      throw board;
+    }
+
+    return board.creationDate;
+    //return new Date();
   },
 };
 
 export const Query: GQLQueryResolvers = {
-  board: () => {
+  boardById: async (_, { id }) => {
     return {
-      id: '1',
-      title: 'Board',
-      creationDate: new Date(),
+      id: id,
+    };
+  },
+  boardByTitle: async (_, { title }, { boardService }) => {
+    const board = await boardService.getBoardByTitle(title);
+
+    if (board instanceof Error) {
+      throw board;
+    }
+
+    return {
+      id: board.id,
     };
   },
 };
