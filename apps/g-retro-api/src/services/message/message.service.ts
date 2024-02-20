@@ -9,6 +9,11 @@ export class MessageService {
   constructor(private entityManager: EntityManager) {
     this.messagedByIdLoader = new DataLoader(async (idList: readonly string[]) => {
       const messages = await this.entityManager.find(MessageEntity, {
+        relations: {
+          user: true,
+          board: true,
+          section: true,
+        },
         where: {
           id: In(idList),
         },
