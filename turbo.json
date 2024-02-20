@@ -26,8 +26,7 @@
       ]
     },
     "docker-build": {
-      "dependsOn": [
-      ]
+      "dependsOn": []
     },
     "docker-up": {
       "dependsOn": [
@@ -44,7 +43,10 @@
       "dependsOn": [
         "docker"
       ],
-      "cache": false,
+      "cache": false
+    },
+    "start":{
+      "dependsOn": ["dev"],
       "persistent": true
     }
   }
