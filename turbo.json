@@ -32,7 +32,8 @@
     "docker-up": {
       "dependsOn": [
         "docker-build"
-      ]
+      ],
+      "cache": false
     },
     "docker":{
       "dependsOn": [
