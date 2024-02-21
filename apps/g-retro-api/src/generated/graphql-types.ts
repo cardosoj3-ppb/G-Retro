@@ -8,7 +8,12 @@ export type MakeOptional<T, K extends keyof T> = Omit<T, K> & { [SubKey in K]?: 
 export type MakeMaybe<T, K extends keyof T> = Omit<T, K> & { [SubKey in K]: Maybe<T[SubKey]> };
 export type MakeEmpty<T extends { [key: string]: unknown }, K extends keyof T> = { [_ in K]?: never };
 export type Incremental<T> = T | { [P in keyof T]?: P extends ' $fragmentName' | '__typename' ? T[P] : never };
-export type ResolverFn<TResult, TParent, TContext, TArgs> = (parent: ResolverTypeParentWrapperPicked<TParent>, args: TArgs, context: TContext, info: GraphQLResolveInfo) => Promise < TResult > | TResult
+export type ResolverFn<TResult, TParent, TContext, TArgs> = (
+  parent: ResolverTypeParentWrapperPicked<TParent>,
+  args: TArgs,
+  context: TContext,
+  info: GraphQLResolveInfo,
+) => Promise<TResult> | TResult;
 export type RequireFields<T, K extends keyof T> = Omit<T, K> & { [P in K]-?: NonNullable<T[P]> };
 
 /**
@@ -17,10 +22,10 @@ export type RequireFields<T, K extends keyof T> = Omit<T, K> & { [P in K]-?: Non
  * This works recursively to support relay relationships (connection - edge - node pattern).
  */
 export type ResolverTypeWrapperPicked<T> = T extends NonNullable<T>
-	? 'id' extends keyof NonNullable<T>
-		? Pick<NonNullable<T>, 'id'>
-		: { [K in keyof T]: ResolverTypeWrapperPicked<NonNullable<T>[K]> }
-	: null | undefined;
+  ? 'id' extends keyof NonNullable<T>
+    ? Pick<NonNullable<T>, 'id'>
+    : { [K in keyof T]: ResolverTypeWrapperPicked<NonNullable<T>[K]> }
+  : null | undefined;
 
 /**
  * The ResolverTypeParentWrapperPicked is similar to the one above, but instead of the return type of resolvers, it Picks the id from the parent param from the resolvers.
@@ -29,13 +34,13 @@ export type ResolverTypeParentWrapperPicked<T> = 'id' extends keyof T ? Pick<T, 
 
 /** All built-in and custom scalars, mapped to their actual values */
 export type Scalars = {
-  ID: { input: string; output: string; }
-  String: { input: string; output: string; }
-  Boolean: { input: boolean; output: boolean; }
-  Int: { input: number; output: number; }
-  Float: { input: number; output: number; }
+  ID: { input: string; output: string };
+  String: { input: string; output: string };
+  Boolean: { input: boolean; output: boolean };
+  Int: { input: number; output: number };
+  Float: { input: number; output: number };
   /** Scalars DateTime */
-  DateTime: { input: Date; output: Date; }
+  DateTime: { input: Date; output: Date };
 };
 
 /** Board Type */
@@ -87,48 +92,40 @@ export type GQLQuery = {
   userByToken?: Maybe<GQLUser>;
 };
 
-
 /** User Query */
 export type GQLQueryBoardByIdArgs = {
   id: Scalars['ID']['input'];
 };
-
 
 /** User Query */
 export type GQLQueryBoardByTitleArgs = {
   title: Scalars['String']['input'];
 };
 
-
 /** User Query */
 export type GQLQueryMessageByIdArgs = {
   id: Scalars['ID']['input'];
 };
-
 
 /** User Query */
 export type GQLQuerySectionByIdArgs = {
   id: Scalars['ID']['input'];
 };
 
-
 /** User Query */
 export type GQLQuerySectionByNameArgs = {
   name: Scalars['String']['input'];
 };
-
 
 /** User Query */
 export type GQLQueryUserByEmailArgs = {
   email: Scalars['String']['input'];
 };
 
-
 /** User Query */
 export type GQLQueryUserByIdArgs = {
   id: Scalars['ID']['input'];
 };
-
 
 /** User Query */
 export type GQLQueryUserByTokenArgs = {
@@ -161,8 +158,6 @@ export type GQLUser = {
   token?: Maybe<Scalars['String']['output']>;
 };
 
-
-
 export type ResolverTypeWrapper<T> = ResolverTypeWrapperPicked<T>;
 
 export type Resolver<TResult, TParent = {}, TContext = {}, TArgs = {}> = ResolverFn<TResult, TParent, TContext, TArgs>;
@@ -171,14 +166,14 @@ export type SubscriptionSubscribeFn<TResult, TParent, TContext, TArgs> = (
   parent: TParent,
   args: TArgs,
   context: TContext,
-  info: GraphQLResolveInfo
+  info: GraphQLResolveInfo,
 ) => AsyncIterable<TResult> | Promise<AsyncIterable<TResult>>;
 
 export type SubscriptionResolveFn<TResult, TParent, TContext, TArgs> = (
   parent: TParent,
   args: TArgs,
   context: TContext,
-  info: GraphQLResolveInfo
+  info: GraphQLResolveInfo,
 ) => TResult | Promise<TResult>;
 
 export interface SubscriptionSubscriberObject<TResult, TKey extends string, TParent, TContext, TArgs> {
@@ -202,10 +197,14 @@ export type SubscriptionResolver<TResult, TKey extends string, TParent = {}, TCo
 export type TypeResolveFn<TTypes, TParent = {}, TContext = {}> = (
   parent: TParent,
   context: TContext,
-  info: GraphQLResolveInfo
+  info: GraphQLResolveInfo,
 ) => Maybe<TTypes> | Promise<Maybe<TTypes>>;
 
-export type IsTypeOfResolverFn<T = {}, TContext = {}> = (obj: T, context: TContext, info: GraphQLResolveInfo) => boolean | Promise<boolean>;
+export type IsTypeOfResolverFn<T = {}, TContext = {}> = (
+  obj: T,
+  context: TContext,
+  info: GraphQLResolveInfo,
+) => boolean | Promise<boolean>;
 
 export type NextResolverFn<T> = () => Promise<T>;
 
@@ -214,10 +213,8 @@ export type DirectiveResolverFn<TResult = {}, TParent = {}, TContext = {}, TArgs
   parent: TParent,
   args: TArgs,
   context: TContext,
-  info: GraphQLResolveInfo
+  info: GraphQLResolveInfo,
 ) => TResult | Promise<TResult>;
-
-
 
 /** Mapping between all available schema types and the resolvers types */
 export type GQLResolversTypes = {
@@ -245,7 +242,10 @@ export type GQLResolversParentTypes = {
   User: GQLUser;
 };
 
-export type GQLBoardResolvers<ContextType = MyContext, ParentType extends GQLResolversParentTypes['Board'] = GQLResolversParentTypes['Board']> = {
+export type GQLBoardResolvers<
+  ContextType = MyContext,
+  ParentType extends GQLResolversParentTypes['Board'] = GQLResolversParentTypes['Board'],
+> = {
   creationDate?: Resolver<GQLResolversTypes['DateTime'], ParentType, ContextType>;
   id?: Resolver<GQLResolversTypes['ID'], ParentType, ContextType>;
   title?: Resolver<GQLResolversTypes['String'], ParentType, ContextType>;
@@ -256,7 +256,10 @@ export interface GQLDateTimeScalarConfig extends GraphQLScalarTypeConfig<GQLReso
   name: 'DateTime';
 }
 
-export type GQLMessageResolvers<ContextType = MyContext, ParentType extends GQLResolversParentTypes['Message'] = GQLResolversParentTypes['Message']> = {
+export type GQLMessageResolvers<
+  ContextType = MyContext,
+  ParentType extends GQLResolversParentTypes['Message'] = GQLResolversParentTypes['Message'],
+> = {
   board?: Resolver<GQLResolversTypes['Board'], ParentType, ContextType>;
   creationDate?: Resolver<GQLResolversTypes['DateTime'], ParentType, ContextType>;
   id?: Resolver<GQLResolversTypes['ID'], ParentType, ContextType>;
@@ -266,24 +269,73 @@ export type GQLMessageResolvers<ContextType = MyContext, ParentType extends GQLR
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
 };
 
-export type GQLQueryResolvers<ContextType = MyContext, ParentType extends GQLResolversParentTypes['Query'] = GQLResolversParentTypes['Query']> = {
-  boardById?: Resolver<Maybe<GQLResolversTypes['Board']>, ParentType, ContextType, RequireFields<GQLQueryBoardByIdArgs, 'id'>>;
-  boardByTitle?: Resolver<Maybe<GQLResolversTypes['Board']>, ParentType, ContextType, RequireFields<GQLQueryBoardByTitleArgs, 'title'>>;
-  messageById?: Resolver<Maybe<GQLResolversTypes['Message']>, ParentType, ContextType, RequireFields<GQLQueryMessageByIdArgs, 'id'>>;
-  sectionById?: Resolver<Maybe<GQLResolversTypes['Section']>, ParentType, ContextType, RequireFields<GQLQuerySectionByIdArgs, 'id'>>;
-  sectionByName?: Resolver<Maybe<GQLResolversTypes['Section']>, ParentType, ContextType, RequireFields<GQLQuerySectionByNameArgs, 'name'>>;
-  userByEmail?: Resolver<Maybe<GQLResolversTypes['User']>, ParentType, ContextType, RequireFields<GQLQueryUserByEmailArgs, 'email'>>;
-  userById?: Resolver<Maybe<GQLResolversTypes['User']>, ParentType, ContextType, RequireFields<GQLQueryUserByIdArgs, 'id'>>;
-  userByToken?: Resolver<Maybe<GQLResolversTypes['User']>, ParentType, ContextType, RequireFields<GQLQueryUserByTokenArgs, 'token'>>;
+export type GQLQueryResolvers<
+  ContextType = MyContext,
+  ParentType extends GQLResolversParentTypes['Query'] = GQLResolversParentTypes['Query'],
+> = {
+  boardById?: Resolver<
+    Maybe<GQLResolversTypes['Board']>,
+    ParentType,
+    ContextType,
+    RequireFields<GQLQueryBoardByIdArgs, 'id'>
+  >;
+  boardByTitle?: Resolver<
+    Maybe<GQLResolversTypes['Board']>,
+    ParentType,
+    ContextType,
+    RequireFields<GQLQueryBoardByTitleArgs, 'title'>
+  >;
+  messageById?: Resolver<
+    Maybe<GQLResolversTypes['Message']>,
+    ParentType,
+    ContextType,
+    RequireFields<GQLQueryMessageByIdArgs, 'id'>
+  >;
+  sectionById?: Resolver<
+    Maybe<GQLResolversTypes['Section']>,
+    ParentType,
+    ContextType,
+    RequireFields<GQLQuerySectionByIdArgs, 'id'>
+  >;
+  sectionByName?: Resolver<
+    Maybe<GQLResolversTypes['Section']>,
+    ParentType,
+    ContextType,
+    RequireFields<GQLQuerySectionByNameArgs, 'name'>
+  >;
+  userByEmail?: Resolver<
+    Maybe<GQLResolversTypes['User']>,
+    ParentType,
+    ContextType,
+    RequireFields<GQLQueryUserByEmailArgs, 'email'>
+  >;
+  userById?: Resolver<
+    Maybe<GQLResolversTypes['User']>,
+    ParentType,
+    ContextType,
+    RequireFields<GQLQueryUserByIdArgs, 'id'>
+  >;
+  userByToken?: Resolver<
+    Maybe<GQLResolversTypes['User']>,
+    ParentType,
+    ContextType,
+    RequireFields<GQLQueryUserByTokenArgs, 'token'>
+  >;
 };
 
-export type GQLSectionResolvers<ContextType = MyContext, ParentType extends GQLResolversParentTypes['Section'] = GQLResolversParentTypes['Section']> = {
+export type GQLSectionResolvers<
+  ContextType = MyContext,
+  ParentType extends GQLResolversParentTypes['Section'] = GQLResolversParentTypes['Section'],
+> = {
   id?: Resolver<GQLResolversTypes['ID'], ParentType, ContextType>;
   name?: Resolver<GQLResolversTypes['String'], ParentType, ContextType>;
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
 };
 
-export type GQLUserResolvers<ContextType = MyContext, ParentType extends GQLResolversParentTypes['User'] = GQLResolversParentTypes['User']> = {
+export type GQLUserResolvers<
+  ContextType = MyContext,
+  ParentType extends GQLResolversParentTypes['User'] = GQLResolversParentTypes['User'],
+> = {
   creationDate?: Resolver<GQLResolversTypes['DateTime'], ParentType, ContextType>;
   email?: Resolver<GQLResolversTypes['String'], ParentType, ContextType>;
   firstName?: Resolver<GQLResolversTypes['String'], ParentType, ContextType>;
@@ -301,4 +353,3 @@ export type GQLResolvers<ContextType = MyContext> = {
   Section?: GQLSectionResolvers<ContextType>;
   User?: GQLUserResolvers<ContextType>;
 };
-
