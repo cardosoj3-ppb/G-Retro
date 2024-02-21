@@ -37,7 +37,7 @@ function App() {
       <Oscar>
         <Heading> Oscar goes to pessi</Heading>
       </Oscar>
-      <Greet name='José' isLoggedIn={true}/>
+      <Greet name="José" isLoggedIn={true} />
     </div>
   );
 }

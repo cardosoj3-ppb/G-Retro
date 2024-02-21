@@ -1,7 +1,7 @@
 type headingprops = {
-    children: string
-}
+  children: string;
+};
 
 export const Heading = (props: headingprops) => {
-    return <h2>{props.children}</h2>
-}
+  return <h2>{props.children}</h2>;
+};
