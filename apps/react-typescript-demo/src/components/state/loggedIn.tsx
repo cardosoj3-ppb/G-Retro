@@ -4,10 +4,10 @@ export const LoggedIn = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   const handleLogin = () => {
-    setIsLoggedIn(true)
+    setIsLoggedIn(true);
   };
   const handleLogout = () => {
-    setIsLoggedIn(false)
+    setIsLoggedIn(false);
   };
 
   return (
