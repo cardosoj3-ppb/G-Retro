@@ -1,14 +1,5 @@
 import './App.css';
-import { User } from './components/state/User';
-
-/* import { Button } from './components/Button';
-import { Greet } from './components/Greet';
-import { Heading } from './components/Heading';
-import { Input } from './components/Inputs';
-import { Oscar } from './components/Oscar';
-import { Person } from './components/Person';
-import { PersonList } from './components/PersonList';
-import { Status } from './components/Status'; */
+import { Counter } from './components/state/Counter';
 
 function App() {
   /* const personName = {
@@ -47,11 +38,14 @@ function App() {
           console.log('Button Clicked!', event, 'id: ', id);
         }}
       />
-      <Input value="" handleChange={event => console.log(event)} /> */}
+      <Input value="" handleChange={event => console.log(event)} /> 
 
-      {/* <Container style={{ border: '1px solid black', padding: '1rem' }} />
-      <LoggedIn /> */}
-      <User />
+      <Container style={{ border: '1px solid black', padding: '1rem' }} />
+      <LoggedIn />
+      <User />*/}
+
+      <Counter />
+
     </div>
   );
 }
