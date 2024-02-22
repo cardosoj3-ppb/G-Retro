@@ -1,5 +1,6 @@
 import './App.css';
 import { Container } from './components/Container';
+import { LoggedIn } from './components/state/loggedIn';
 
 /* import { Button } from './components/Button';
 import { Greet } from './components/Greet';
@@ -50,6 +51,7 @@ function App() {
       <Input value="" handleChange={event => console.log(event)} /> */}
 
       <Container style={{ border: '1px solid black', padding: '1rem' }} />
+      <LoggedIn />
     </div>
   );
 }
