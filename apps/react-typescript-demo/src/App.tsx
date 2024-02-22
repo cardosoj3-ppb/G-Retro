@@ -1,15 +1,17 @@
 import './App.css';
-import { Button } from './components/Button';
+import { Container } from './components/Container';
+
+/* import { Button } from './components/Button';
 import { Greet } from './components/Greet';
 import { Heading } from './components/Heading';
 import { Input } from './components/Inputs';
 import { Oscar } from './components/Oscar';
 import { Person } from './components/Person';
 import { PersonList } from './components/PersonList';
-import { Status } from './components/Status';
+import { Status } from './components/Status'; */
 
 function App() {
-  const personName = {
+  /* const personName = {
     first: 'Bruce',
     last: 'Wayne',
   };
@@ -28,11 +30,11 @@ function App() {
       first: 'Princess',
       last: 'Diana',
     },
-  ];
+  ]; */
 
   return (
     <div className="App">
-      <Greet name="José" messageCount={10} isLoggedIn={true} />
+      {/* <Greet name="José" messageCount={10} isLoggedIn={true} />
       <Person name={personName} />
       <PersonList names={nameList} />
       <Status status="error" />
@@ -45,7 +47,9 @@ function App() {
           console.log('Button Clicked!', event, 'id: ', id);
         }}
       />
-      <Input value="" handleChange={event => console.log(event)} />
+      <Input value="" handleChange={event => console.log(event)} /> */}
+
+      <Container style={{ border: '1px solid black', padding: '1rem' }} />
     </div>
   );
 }
