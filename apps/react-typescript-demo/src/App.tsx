@@ -1,6 +1,5 @@
 import './App.css';
-import { DomRef } from './components/ref/DomRef';
-import { MutableRef } from './components/ref/MutableRef';
+import { Counter } from './components/class/Counter';
 
 function App() {
   /* const personName = {
@@ -52,11 +51,13 @@ function App() {
       </ThemeContextProvider>
       <UserContextProvider>
         <User /> 
-      </UserContextProvider>*/}
+      </UserContextProvider>
 
       <DomRef />
-      <MutableRef />
+      <MutableRef />*/}
 
+
+      <Counter message='The value is: '/>
     </div>
   );
 }
