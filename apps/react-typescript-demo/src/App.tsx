@@ -1,5 +1,6 @@
 import './App.css';
-import { Counter } from './components/class/Counter';
+import { Private } from './components/Auth/Private';
+import { Profile } from './components/Auth/Profile';
 
 function App() {
   /* const personName = {
@@ -54,10 +55,12 @@ function App() {
       </UserContextProvider>
 
       <DomRef />
-      <MutableRef />*/}
+      <MutableRef />
 
 
-      <Counter message='The value is: '/>
+      <Counter message='The value is: '/>*/}
+
+      <Private isLoggedIn={true} component={Profile}/>
     </div>
   );
 }
