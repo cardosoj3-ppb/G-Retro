@@ -1,6 +1,6 @@
 import './App.css';
-import { Toast } from './components/templateliterals/Toast';
-
+import { CustomButton } from './components/html/Button';
+import { CustomInput } from './components/html/Input';
 
 function App() {
   /* const personName = {
@@ -62,10 +62,12 @@ function App() {
 
       <Private isLoggedIn={true} component={Profile}/> 
 
-      <RandomNumber  value={10}  isPositive/>*/}
+      <RandomNumber  value={10}  isPositive/>
 
-      <Toast position='center'/>
+      <Toast position='center'/> */}
 
+      <CustomButton variant="primary">SMTG</CustomButton>
+      <CustomInput style={{ height: "100px"}} />
     </div>
   );
 }
