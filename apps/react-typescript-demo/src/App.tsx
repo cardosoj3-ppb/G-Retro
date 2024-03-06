@@ -1,5 +1,6 @@
 import './App.css';
-import { RandomNumber } from './components/restriction/RandomNumber';
+import { Toast } from './components/templateliterals/Toast';
+
 
 function App() {
   /* const personName = {
@@ -59,9 +60,12 @@ function App() {
 
       <Counter message='The value is: '/>
 
-      <Private isLoggedIn={true} component={Profile}/> */}
+      <Private isLoggedIn={true} component={Profile}/> 
 
-      <RandomNumber  value={10}  isPositive/>
+      <RandomNumber  value={10}  isPositive/>*/}
+
+      <Toast position='center'/>
+
     </div>
   );
 }
