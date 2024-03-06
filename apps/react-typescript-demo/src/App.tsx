@@ -1,6 +1,5 @@
 import './App.css';
-import { Private } from './components/Auth/Private';
-import { Profile } from './components/Auth/Profile';
+import { RandomNumber } from './components/restriction/RandomNumber';
 
 function App() {
   /* const personName = {
@@ -58,9 +57,11 @@ function App() {
       <MutableRef />
 
 
-      <Counter message='The value is: '/>*/}
+      <Counter message='The value is: '/>
 
-      <Private isLoggedIn={true} component={Profile}/>
+      <Private isLoggedIn={true} component={Profile}/> */}
+
+      <RandomNumber  value={10}  isPositive/>
     </div>
   );
 }
