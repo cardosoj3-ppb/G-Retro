@@ -1,5 +1,5 @@
 import './App.css';
-import { CustomComponent } from './components/html/CustumComponent';
+import { Text } from './components/polymorphic/Text';
 
 function App() {
   /* const personName = {
@@ -66,9 +66,14 @@ function App() {
       <Toast position='center'/> 
 
       <CustomButton variant="primary">SMTG</CustomButton>
-      <CustomInput style={{ height: "100px"}} /> */}
+      <CustomInput style={{ height: "100px"}} /> 
 
-      <CustomComponent isLoggedIn={true} name="jose" />
+      <CustomComponent isLoggedIn={true} name="jose" />*/}
+
+      <Text as='h1' size='lg'> Heading</Text>
+      <Text as='p' size='md'> Paragraph</Text>
+      <Text as='label' size='sm' htmlFor='someid' color='secondary'> Label</Text>
+
     </div>
   );
 }
